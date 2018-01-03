@@ -2,6 +2,7 @@
 import tweepy
 import json
 import time
+import random 
 
 # Twitter API Keys
 consumer_key = "gmNxN1oGO0x7hZ2S3aZleASHp"
@@ -14,12 +15,13 @@ auth = tweepy.OAuthHandler(consumer_key, consumer_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
+Quote = [ "Quote1", "Quote2", "Quote3"]
 
 # Create a function that tweets
 def TweetOut(tweet_number):
     api.update_status(
-        "Can't stop. Won't stop. Chatting! This is Tweet #%s!" %
-        tweet_number)
+        "#%s! New Tweet is: %s" %
+        (tweet_number, random.choice(Quote) ))
 
 
 # Create a function that calls the TweetOut function every minute
@@ -28,6 +30,7 @@ counter = 0
 # Infinitely loop
 while(True):
 
+    print ("Go Live now!") 
     # Call the TweetQuotes function and specify the tweet number
     TweetOut(counter)
 
@@ -36,3 +39,5 @@ while(True):
 
     # Add 1 to the counter prior to re-running the loop
     counter = counter + 1
+
+
